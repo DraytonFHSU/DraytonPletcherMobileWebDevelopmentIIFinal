@@ -5,12 +5,10 @@ import { Button } from '@react-navigation/elements';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ScrollView } from 'react-native-web';
 
-import Header from '../Header/Header';
-import Profile from '../Profile/Profile';
-import MyButton from '../MyButton/MyButton';
+
 // import TransactionList from '../../Transaction/TransactionList';
 import TransactionListScreen from '../../screens/TransactionListScreen';
-import TransactionData from '../Transaction/TransactionData'
+import transactionData from  "../../data/categories"; // Import transactionData
 import TransactionDetails from '../Transaction/TransactionDetails';
 import Testing from '../shared/Testing';
 // import AddTransaction from '../Transaction/AddTransaction';
@@ -32,12 +30,12 @@ export default function MyStack() {
     <AuthContextProvider>
       <TransactionProvider>
       <Stack.Navigator>
-        <Stack.Screen name="SignIn" component={SignInScreen} />
-        <Stack.Screen name="SignUp" component={SignupScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="EditTransactionScreen" component={EditTransactionScreen} />
+        <Stack.Screen name="SignIn" component={SignInScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="SignUp" component={SignupScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="Edit Transaction" component={EditTransactionScreen} />
         {/* <Stack.Screen name="TransactionDetails" component={TransactionDetails} /> */}
-        <Stack.Screen name="AddTransactionScreen" component={AddTransactionScreen} />
+        <Stack.Screen name="Add Transaction" component={AddTransactionScreen}/>
         {/* <Stack.Screen name="AddTransaction" component={AddTransaction} /> */}
       </Stack.Navigator>
       </TransactionProvider>

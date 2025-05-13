@@ -8,7 +8,7 @@ const TransactionDetails = ({ route }) => {
     <View style={styles.container}>
       <Image source={transaction.image} style={styles.image} />
       <Text style={styles.id}>Transaction ID: {transaction.id}</Text>
-      <Text style={styles.title}>{transaction.title}</Text>
+      <Text style={styles.amount}>{transaction.amount}</Text>
       <Text style={styles.description}>{transaction.description}</Text>
       <Text style={styles.category}>{transaction.category}</Text>
     </View>
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 10,
   },
-  title: {
+  amount: {
     fontSize: 24,
     fontWeight: 'bold',
     marginTop: 10,

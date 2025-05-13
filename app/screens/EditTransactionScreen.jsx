@@ -8,7 +8,7 @@ const EditTransactionScreen = ({ route }) => {
     <View style={styles.container}>
       <Image source={transaction.data.image} style={styles.image} />
       <Text style={styles.id}>Transaction ID: {transaction.data.id}</Text>
-      <Text style={styles.title}>{transaction.data.title}</Text>
+      <Text style={styles.amount}>{transaction.data.amount}</Text>
       <Text style={styles.description}>{transaction.data.description}</Text>
       <Text style={styles.category}>{transaction.data.category}</Text>
     </View>
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 10,
   },
-  title: {
+  amount: {
     fontSize: 24,
     fontWeight: 'bold',
     marginTop: 10,

@@ -13,8 +13,8 @@ import {UserAuth} from "../contexts/AuthContext"
 import { useNavigation } from "@react-navigation/native";
 
 export default function SignInScreen() {
-    const [email, setEmail] = useState("1@mail.com");
-    const [password, setPassword] = useState("123456");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const {height} = useWindowDimensions();
     const {signIn} = UserAuth();
@@ -30,8 +30,6 @@ export default function SignInScreen() {
         }
         catch(err){console.log(err)}
     }
-
-    
 
     const onForgotPassword = () => {
         console.warn("Sign In Pressed")

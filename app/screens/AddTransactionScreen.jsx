@@ -4,17 +4,17 @@ import DropDownPicker from "react-native-dropdown-picker";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { Alert } from 'react-native';
 
-import transactionData, { categories } from  "../components/Transaction/TransactionData"; // Import transactionData
+import transactionData, { categories } from  "../data/categories"; // Import transactionData
 
 import { useNavigation } from '@react-navigation/native'; // Add this to use navigation hook
 import TransactionContext from "../contexts/TransactionContext";
 
 export default function AddTransactionScreen(){
   const {addTransaction} = useContext(TransactionContext)
-  //title description
-  const [title, setTitle] = useState('');
+  //amount description
+  const [amount, setAmount] = useState('');
   const [description, setDescription] = useState('');
-  //dropdown
+  //dropdown menu for categories
   const[open, setOpen] = useState(false);
   const[category, setCategory] = useState(null);
 //map for categories
@@ -47,13 +47,13 @@ export default function AddTransactionScreen(){
   const navigation = useNavigation();
 
 const handleSubmit = () => {
-  if (title && description && category /*&& selectedDate*/) {
+  if (amount && description && category /*&& selectedDate*/) {
     //make a new transaction
     const transaction = {
       id: transactions.length + 1, //could be better
-      title,
+      amount,
       description,
-      category,
+      category: categories.find((item) => item.value === category)?.label,
       // date: selectedDate.toString(),
       image: require("../../assets/Mad_Duck.jpg"),
     };
@@ -63,7 +63,7 @@ const handleSubmit = () => {
 
 
       // Clear the form fields
-      setTitle('');
+      setAmount('');
       setDescription('');
       setCategory(null);
       // setSelectedDate(null);
@@ -82,9 +82,9 @@ return (
         <Text>Create Transaction</Text>
         <TextInput 
           style={styles.input}
-          placeholder="Enter Transaction Title"
-          onChangeText={(title) => setTitle(title)}
-          value={title}
+          placeholder="Enter Transaction Amount"
+          onChangeText={(amount) => setAmount(amount)}
+          value={amount}
         />
         <TextInput 
           style={styles.input}
@@ -106,7 +106,7 @@ return (
 
         <View>
           <Button
-            title="Select Date & Time"
+            amount="Select Date & Time"
             onPress={() => setDatePickerVisibility(true)}
           />
           <DateTimePicker style={styles.date}
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
       padding: 50,
       backgroundColor: "#ffe4b5",
     },
-    title:{
+    amount:{
       color: "black",
       fontSize: 50,
       textAlign: "center"

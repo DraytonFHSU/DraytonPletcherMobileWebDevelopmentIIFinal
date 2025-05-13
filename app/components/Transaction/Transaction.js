@@ -12,7 +12,7 @@ import  Swipeable from 'react-native-gesture-handler/Swipeable';
 
 export default function Transaction({
   image, 
-  title, 
+  amount, 
   description, 
   category, 
   onPress, 
@@ -28,7 +28,7 @@ export default function Transaction({
       <>
       <View style={styles.mainContainer}>
         <Image style={styles.image} source={image}/>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.amount}>${amount}</Text>
         <Text style={styles.description}>{description}</Text>
         <Text style={styles.category}>{category}</Text>
       </View>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     padding: 20,
   },
-  title: {
+  amount: {
     fontWeight: "bold",
     fontSize: 25,
     padding: 5,

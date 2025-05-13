@@ -30,7 +30,6 @@ export default function SignupScreen(){
         console.log(data);
         try {
             await createUser(email, password).then((userCredential) => {
-            console.log(user);
             navigation.navigate("Home")
             });
         } catch (err) {

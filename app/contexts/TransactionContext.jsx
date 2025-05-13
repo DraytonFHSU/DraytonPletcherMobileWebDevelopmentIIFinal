@@ -15,7 +15,7 @@ export const TransactionProvider = ({ children}) => {
         const fetchTransaction = async () => {
             try {
                 const transactionListRef = collection(db, "transactionList");
-                const q = query(transactionListRef, orderBy("title"), limit(10));
+                const q = query(transactionListRef, orderBy("amount"), limit(10));
                 const querySnapshot = await getDocs(q);
                 const transactionList = querySnapshot.docs.map((doc) => ({
                     id: doc.id,
@@ -71,14 +71,14 @@ export const TransactionProvider = ({ children}) => {
     }
         // Delete Transaction
         const deleteTransaction = async(id) => {
-            Alert.alert("Delete Transaction", "Are you sure you want to delete this transaction?", [
-                {
-                    text: "Cancel",
-                    style: "cancel",
-                },
-                {
-                    text: "Delete",
-                    onPress: () => {
+            // Alert.alert("Delete Transaction", "Are you sure you want to delete this transaction?", [
+            //     {
+            //         text: "Cancel",
+            //         style: "cancel",
+            //     },
+            //     {
+            //         text: "Delete",
+            //         onPress: () => {
                         try {
                             const docRef = doc(db, "transactionList", id);
                             deleteDoc(docRef);
@@ -88,9 +88,9 @@ export const TransactionProvider = ({ children}) => {
                         } catch (err) {
                             console.log(err)
                         }
-                    }
-                },
-            ])
+            //         }
+            //     },
+            // ])
             // if(window.confirm("Are you sure you want to delete?")) {
             //     try {
             //         const docRef = doc(db, "transactionList", id);

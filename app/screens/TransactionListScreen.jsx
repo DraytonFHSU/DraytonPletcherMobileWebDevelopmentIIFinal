@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, ScrollView, StyleSheet, Button, TouchableOpacity, SafeAreaView, TouchableWithoutFeedback, FlatList } from 'react-native';
-import transactionData from '../components/Transaction/TransactionData';
+import transactionData from  "../data/categories"; // Import transactionData
 import Card from '../components/shared/Card';
 import { Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
@@ -15,13 +15,13 @@ const TransactionListScreen = () => {
     useContext(TransactionContext);
   
   const [modalVisible, setModalVisible] = useState(false);
-  const [title, setTitle] = useState("");
+  const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
   const [transactionId, setTransactionId] = useState(null);
 
   const handleEditTransaction = (transaction) => {
     setTransactionId(transaction.id);
-    setTitle(transaction.title);
+    setAmount(transaction.amount);
     setDescription(transaction.description);
     setModalVisible(true);
     editTransaction(transaction);
@@ -29,7 +29,7 @@ const TransactionListScreen = () => {
 
   const handleUpdateTransaction = () => {
     if (transactionId) {
-      updateTransaction(transactionId, {title, description});
+      updateTransaction(transactionId, {amount, description});
       setModalVisible(false);
     }
   }
@@ -43,10 +43,10 @@ return (
       renderItem={({ item }) => (
           <Transaction
             image={item.data.image}
-            title={item.data.title}
+            amount={item.data.amount}
             description={item.data.description}
             category={item.data.category}
-            onPress={() => navigation.navigate('EditTransactionScreen', { transaction: item })}
+            onPress={() => navigation.navigate('Edit Transaction', { transaction: item })}
             renderRightActions={() => (
               <View>
                 <Pressable onPress={() => deleteTransaction(item.id)}>
@@ -69,9 +69,9 @@ return (
           <Text style={styles.modalContent}>Edit Transaction</Text>
           <TextInput
             style={styles.input}
-            placeholder='Transaction Title'
-            value={title}
-            onChangeText={setTitle}
+            placeholder='Transaction Amount'
+            value={amount}
+            onChangeText={setAmount}
           />
           <TextInput
             style={styles.input}
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     padding: 20,
     width: '75%',
   },
-  title: {
+  amount: {
     fontSize: 18,
     fontWeight: 'bold',
   },
